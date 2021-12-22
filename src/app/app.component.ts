@@ -24,11 +24,12 @@ export class AppComponent {
   displayedColumns: string[] = ['id', 'name', 'action'];
   dataSource = ELEMENT_DATA;
 
-  @ViewChild(MatTable,{static:true}) table: MatTable<any>;
+  @ViewChild(MatTable, { static: true })
+  table!: MatTable<any>;
 
   constructor(public dialog: MatDialog) {}
 
-  openDialog(action,obj) {
+  openDialog(action: any,obj: { action: any; }) {
     obj.action = action;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '250px',
@@ -46,7 +47,7 @@ export class AppComponent {
     });
   }
 
-  addRowData(row_obj){
+  addRowData(row_obj: { name: any; }){
     var d = new Date();
     this.dataSource.push({
       id:d.getTime(),
@@ -55,7 +56,7 @@ export class AppComponent {
     this.table.renderRows();
     
   }
-  updateRowData(row_obj){
+  updateRowData(row_obj: { id: number; name: string; }){
     this.dataSource = this.dataSource.filter((value,key)=>{
       if(value.id == row_obj.id){
         value.name = row_obj.name;
@@ -63,7 +64,7 @@ export class AppComponent {
       return true;
     });
   }
-  deleteRowData(row_obj){
+  deleteRowData(row_obj: { id: number; }){
     this.dataSource = this.dataSource.filter((value,key)=>{
       return value.id != row_obj.id;
     });
