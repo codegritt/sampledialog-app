@@ -26,6 +26,7 @@ export class AppComponent {
 
   @ViewChild(MatTable, { static: true })
   table!: MatTable<any>;
+  title: any;
 
   constructor(public dialog: MatDialog) {}
 
